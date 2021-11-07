@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Orgierr/rs.school#readme",
   "devDependencies": {
     "eslint": "^8.2.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-prettier": "^4.0.0"
   }
 }
