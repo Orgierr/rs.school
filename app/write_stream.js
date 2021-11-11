@@ -8,7 +8,6 @@ class WriteStream extends Writable {
     this.filename = filename;
   }
   _construct(callback) {
-    if (!this.filename) callback(new CustomError('Missing output file'));
     fs.open(this.filename, 'a', (err, fd) => {
       if (err) {
         callback(new CustomError(`Unable to open file ${this.filename}`));

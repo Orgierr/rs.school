@@ -9,7 +9,6 @@ class ReadStream extends Readable {
     this.fd = null;
   }
   _construct(callback) {
-    if (!this.filename) callback(new CustomError('Missing input file'));
     fs.open(this.filename, (err, fd) => {
       if (err) {
         callback(new CustomError(`Unable to open file ${this.filename}`));
