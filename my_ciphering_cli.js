@@ -6,6 +6,7 @@ const CustomError = require('./app/custom_error');
 const ReadStream = require('./app/read_stream');
 const WriteStream = require('./app/write_stream');
 const CustomTransform = require('./app/custom_transform_stream');
+process.exitCode = 1;
 async function myCipheringCli() {
   try {
     const ciphersArray = validateArg(process.argv);
