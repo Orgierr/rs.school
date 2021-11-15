@@ -1,3 +1,5 @@
+# По невнимательности на 59 строчке my_ciphering_cli.js допустил ошибку вместо err вставил error
+
 # Ciphering CLI Tool
 
 For usage need node 16.13.0 LTS
