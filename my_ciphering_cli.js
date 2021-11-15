@@ -56,7 +56,7 @@ async function myCipheringCli() {
     }
     pipeline(readStream, ...transforms, writeStream, (err) => {
       if (err) {
-        process.stderr.write(error.message);
+        process.stderr.write(err.message);
       }
     });
   } catch (error) {
