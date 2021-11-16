@@ -2,6 +2,7 @@ const { Transform } = require('stream');
 const atbash = require('./atbash');
 const encode = require('./encode');
 const decode = require('./decode');
+const alphCase = require('./alph_case');
 
 class CustomTransform extends Transform {
   constructor(cipher) {
@@ -16,11 +17,6 @@ class CustomTransform extends Transform {
       .join('');
     callback(null, data);
   }
-}
-
-function alphCase(letter, alphabet) {
-  if (alphabet.toLowerCase().includes(letter)) return alphabet;
-  return alphabet.toUpperCase();
 }
 
 function transformLetter(letter, cipher) {
