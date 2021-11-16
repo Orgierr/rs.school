@@ -9,13 +9,10 @@ const CustomTransform = require('./app/custom_transform_stream');
 process.exitCode = 1;
 async function myCipheringCli() {
   try {
-    const ciphersArray = validateArg(process.argv);
+    const config = validateArg(process.argv);
     const transforms = [];
-    const validCiphers = ['A', 'C1', 'R1', 'C0', 'R0'];
-    for (const cipher of ciphersArray) {
-      if (!validCiphers.includes(cipher)) {
-        throw new CustomError(`Wrong cipher in config-${cipher} `);
-      }
+
+    for (const cipher of config.split('-')) {
       transforms.push(new CustomTransform(cipher));
     }
 
@@ -54,14 +51,17 @@ async function myCipheringCli() {
         throw new CustomError('Missing  or cant acces output file');
       }
     }
-    pipeline(readStream, ...transforms, writeStream, (err) => {
-      if (err) {
-        process.stderr.write(err.message);
+    pipeline(readStream, ...transforms, writeStream, (error) => {
+      if (error) {
+        throw error;
+        // process.stderr.write(err.message);
       }
     });
   } catch (error) {
-    process.stderr.write(error.message);
+    throw error;
+    // process.stderr.write(error.message);
   }
 }
 
-myCipheringCli();
+// myCipheringCli();
+module.exports = myCipheringCli;
