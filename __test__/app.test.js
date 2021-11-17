@@ -1,6 +1,6 @@
-const transform = require('../app/custom_transform_stream');
+// const transform = require('../app/custom_transform_stream');
 const app = require('../app/app');
-jest.mock('../app/custom_transform_stream');
+jest.mock('transform');
 describe('validate arguments', () => {
   it('duplicate', async () => {
     process.argv = ['node', 'my_caesar_cli ', '-c', 'C1-C1-A-R0', '-c', 'C0'];
