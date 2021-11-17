@@ -3,8 +3,6 @@ const validateArg = require('./validate_arg');
 const fs = require('fs');
 const { pipeline } = require('stream');
 const CustomError = require('./custom_error');
-const ReadStream = require('./read_stream');
-const WriteStream = require('./write_stream');
 const CustomTransform = require('./custom_transform_stream');
 process.exitCode = 1;
 async function app() {
@@ -34,7 +32,7 @@ async function app() {
           process.argv[inputIndex + 1],
           fs.constants.F_OK | fs.constants.R_OK
         );
-        readStream = new ReadStream(process.argv[inputIndex + 1]);
+        readStream = fs.createReadStream(process.argv[inputIndex + 1]);
       } catch (error) {
         throw new CustomError('Missing  or cant acces input file');
       }
@@ -46,7 +44,9 @@ async function app() {
           fs.constants.F_OK | fs.constants.W_OK
         );
 
-        writeStream = new WriteStream(process.argv[outputIndex + 1]);
+        writeStream = fs.createWriteStream(process.argv[outputIndex + 1], {
+          flags: 'a',
+        });
       } catch (error) {
         throw new CustomError('Missing  or cant acces output file');
       }
