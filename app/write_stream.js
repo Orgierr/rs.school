@@ -25,9 +25,11 @@ class WriteStream extends Writable {
   }
   _destroy(err, callback) {
     if (this.fd) {
-      fs.close(this.fd, (er) =>
-        callback(new CustomError(`Unable to close file ${this.filename}`))
-      );
+      fs.close(this.fd, (er) => {
+        if (er) {
+          callback(new CustomError(`Unable to close file ${this.filename}`));
+        }
+      });
     } else {
       callback(err);
     }
