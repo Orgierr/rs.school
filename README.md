@@ -1,3 +1,6 @@
+# По невнимательности на 59 строчке my_ciphering_cli.js допустил ошибку вместо err вставил error,
+# также забыл  сделать проверку read_stream.js на 33 строке,но эти ошибки не влияют на работу приложения
+
 # Ciphering CLI Tool
 
 For usage need node 16.13.0 LTS
